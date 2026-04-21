@@ -1,5 +1,5 @@
 {
-  "name": "ambulance-ufe",
+  "name": "pharmacy-ufe",
   "version": "0.0.1",
   "description": "Stencil Component Starter",
   "main": "dist/index.cjs.js",
@@ -7,11 +7,11 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/ambulance-ufe/ambulance-ufe.esm.js",
+  "unpkg": "dist/pharmacy-ufe/pharmacy-ufe.esm.js",
   "exports": {
     ".": {
-      "import": "./dist/ambulance-ufe/ambulance-ufe.esm.js",
-      "require": "./dist/ambulance-ufe/ambulance-ufe.cjs.js"
+      "import": "./dist/pharmacy-ufe/pharmacy-ufe.esm.js",
+      "require": "./dist/pharmacy-ufe/pharmacy-ufe.cjs.js"
     },
     "./my-component": {
       "import": "./dist/components/my-component.js",
