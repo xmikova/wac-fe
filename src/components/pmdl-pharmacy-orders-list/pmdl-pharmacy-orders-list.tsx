@@ -33,11 +33,11 @@ export class PmdlPharmacyOrdersList {
     return (
       <div>
         <div class="header">
-          <h3>Orders · {this.pharmacyId}</h3>
-          <a class="btn" href={`${ordersBasePath}/orders/new`}>New order</a>
+          <h2>Objednávky</h2>
+          <a class="btn" href={`${ordersBasePath}/orders/new`}>Nová objednávka</a>
         </div>
         <div class="list">
-          {this.orders.length === 0 && <div>No orders</div>}
+          {this.orders.length === 0 && <div>Žiadne objednávky</div>}
           {this.orders.map(o => (
             <div class="row">
               <a href={`${ordersBasePath}/orders/${o.id}`}>{o.id}</a>

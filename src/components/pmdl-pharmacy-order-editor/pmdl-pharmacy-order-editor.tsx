@@ -28,7 +28,8 @@ export class PmdlPharmacyOrderEditor {
         pharmacyId: this.pharmacyId,
         items: [],
         status: OrderStatus.Created as any,
-        createdBy: '',
+        createdAt: new Date(),
+        createdBy: 'user-1',
         notes: '',
       };
     }
@@ -77,7 +78,7 @@ export class PmdlPharmacyOrderEditor {
       }
     } catch (e) {
       console.error('save order', e);
-      alert('Failed to save order');
+      alert('Objednávku sa nepodarilo uložiť');
     }
   }
 
@@ -85,15 +86,8 @@ export class PmdlPharmacyOrderEditor {
     const items = (this.order.items || []) as OrderItem[];
     return (
       <div>
-        <h3>{this.orderId && this.orderId !== 'new' ? 'Edit order' : 'New order'}</h3>
-        <label>Created by
-          <input value={this.order.createdBy || ''} onInput={e => (this.order = { ...this.order, createdBy: (e.target as any).value })} />
-        </label>
-        <label>Notes
-          <textarea value={this.order.notes || ''} onInput={e => (this.order = { ...this.order, notes: (e.target as any).value })} />
-        </label>
-
-        <h4>Items</h4>
+        <h3>{this.orderId && this.orderId !== '@new' ? 'Upraviť objednávku' : 'Nová objednávka'}</h3>
+        <h4>Položky</h4>
         <div>
           {items.map((it, idx) => (
             <div class="item-row">
@@ -103,14 +97,17 @@ export class PmdlPharmacyOrderEditor {
               <input placeholder="unit" value={it.unit} onInput={e => this.updateItem(idx, 'unit', (e.target as any).value)} />
               <input type="number" step="0.01" value={it.unitPrice} onInput={e => this.updateItem(idx, 'unitPrice', parseFloat((e.target as any).value || '0'))} />
               <span>{it.totalPrice?.toFixed(2) || '0.00'}</span>
-              <button onClick={() => this.removeItem(idx)}>Remove</button>
+              <button onClick={() => this.removeItem(idx)}>Odstrániť</button>
             </div>
           ))}
         </div>
-        <button onClick={() => this.addItem()}>Add item</button>
+        <button onClick={() => this.addItem()}>Pridať položku</button>
+        <label>Poznámka
+          <textarea value={this.order.notes || ''} onInput={e => (this.order = { ...this.order, notes: (e.target as any).value })} />
+        </label>
         <div class="actions">
-          <button onClick={() => this.save()}>Save</button>
-          <a href={`${this.basePath.replace(/\/$/, '')}/orders`}>Back</a>
+          <button onClick={() => this.save()}>Uložiť</button>
+          <a href={`${this.basePath.replace(/\/$/, '')}/orders`}>Späť</a>
         </div>
       </div>
     );

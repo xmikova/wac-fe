@@ -40,28 +40,28 @@ export class PmdlPharmacyOrderDetail {
   render() {
     const ordersBasePath = this.basePath.replace(/\/$/, '');
 
-    if (!this.order) return <div>Loading...</div>;
+    if (!this.order) return <div>Načítavam...</div>;
     return (
       <div>
-        <h3>Order {this.order.id}</h3>
-        <div>Status: <strong>{this.order.status}</strong></div>
-        <div>Created: {this.order.createdAt}</div>
-        <div>Updated: {this.order.updatedAt}</div>
-        <div>Created by: {this.order.createdBy}</div>
-        <h4>Items</h4>
+        <h3>Objednávka {this.order.id}</h3>
+        <div>Stav: <strong>{this.order.status}</strong></div>
+        <div>Vytvorené: {this.order.createdAt.toLocaleString()}</div>
+        <div>Upravené: {this.order.updatedAt!.toLocaleString()}</div>
+        <div>Vytvoril: {this.order.createdBy}</div>
+        <h4>Položky</h4>
         <ul>
           {(this.order.items || []).map((it: OrderItem) => (
             <li>{it.medicineName || it.medicineId} — {it.quantity} {it.unit} @ {it.unitPrice} = {it.totalPrice}</li>
           ))}
         </ul>
         <div class="status-actions">
-          <button onClick={() => this.setStatus(OrderStatus.Confirmed)}>Confirm</button>
-          <button onClick={() => this.setStatus(OrderStatus.Delivered)}>Mark Delivered</button>
-          <button onClick={() => this.setStatus(OrderStatus.Cancelled)}>Cancel</button>
+          <button onClick={() => this.setStatus(OrderStatus.Confirmed)}>Potvrdiť objednávku</button>
+          <button onClick={() => this.setStatus(OrderStatus.Delivered)}>Označiť ako doručené</button>
+          <button onClick={() => this.setStatus(OrderStatus.Cancelled)}>Zrušiť objednávku</button>
         </div>
         <div class="nav">
-          <a href={`${ordersBasePath}/orders`}>Back</a>
-          <a href={`${ordersBasePath}/orders/${this.order.id}/edit`}>Edit</a>
+          <a href={`${ordersBasePath}/orders`}>Späť</a>
+          <a href={`${ordersBasePath}/orders/${this.order.id}/edit`}>Upraviť objednávku</a>
         </div>
       </div>
     );
