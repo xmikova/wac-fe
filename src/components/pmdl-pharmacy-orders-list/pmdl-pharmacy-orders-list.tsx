@@ -1,4 +1,4 @@
-import { Component, Prop, State, h } from '@stencil/core';
+import { Component, Prop, State, Host, h } from '@stencil/core';
 import { PharmacyOrdersApi, Configuration } from '../../api/ambulance-wl';
 
 @Component({
@@ -11,6 +11,7 @@ export class PmdlPharmacyOrdersList {
   @Prop() basePath: string = '';
   @Prop() apiBase!: string;
   @State() orders: any[] = [];
+  @State() errorMessage: string = '';
   api?: PharmacyOrdersApi;
 
   async componentWillLoad() {
@@ -23,29 +24,47 @@ export class PmdlPharmacyOrdersList {
       this.orders = await this.api!.getOrders({ pharmacyId: this.pharmacyId });
     } catch (e) {
       console.error('load orders', e);
+      this.errorMessage = 'Chyba pri načítaní objednávok';
       this.orders = [];
     }
   }
 
-  render() {
-    const ordersBasePath = this.basePath.replace(/\/$/, '');
+  navigateToNew() {
+    const basePath = this.basePath.replace(/\/$/, '');
+    window.navigation.navigate(`${basePath}/orders/new`);
+  }
 
+  navigateToDetail(orderId: string) {
+    const basePath = this.basePath.replace(/\/$/, '');
+    window.navigation.navigate(`${basePath}/orders/${orderId}`);
+  }
+
+  render() {
     return (
-      <div>
+      <Host>
         <div class="header">
-          <h2>Objednávky</h2>
-          <a class="btn" href={`${ordersBasePath}/orders/new`}>Nová objednávka</a>
+          <h2 class="title">Zoznam objednávok</h2>
+          <md-filled-icon-button onClick={() => this.navigateToNew()}>
+            <md-icon>add</md-icon>
+          </md-filled-icon-button>
         </div>
-        <div class="list">
-          {this.orders.length === 0 && <div>Žiadne objednávky</div>}
-          {this.orders.map(o => (
-            <div class="row">
-              <a href={`${ordersBasePath}/orders/${o.id}`}>{o.id}</a>
-              <span class="status">{o.status}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+        {this.errorMessage ? (
+          <div class="error">{this.errorMessage}</div>
+        ) : this.orders.length === 0 ? (
+          <div class="error">Žiadne objednávky</div>
+        ) : (
+          <md-list>
+            {this.orders.map(order => (
+              <md-list-item onClick={() => this.navigateToDetail(order.id)}>
+                <div slot="headline">Objednávka: {order.id}</div>
+                <div slot="supporting-text">Stav: {order.status} | Tvorca: {order.createdBy}</div>
+                <md-icon slot="start">shopping_cart</md-icon>
+                <md-icon slot="end">chevron_right</md-icon>
+              </md-list-item>
+            ))}
+          </md-list>
+        )}
+      </Host>
     );
   }
 }

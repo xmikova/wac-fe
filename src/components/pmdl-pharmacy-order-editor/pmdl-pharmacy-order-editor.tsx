@@ -1,4 +1,4 @@
-import { Component, Prop, State, h } from '@stencil/core';
+import { Component, Prop, State, Host, h } from '@stencil/core';
 import { PharmacyOrdersApi, Configuration, Order, OrderItem, OrderStatus } from '../../api/ambulance-wl';
 
 @Component({
@@ -10,8 +10,9 @@ export class PmdlPharmacyOrderEditor {
   @Prop() pharmacyId!: string;
   @Prop() basePath: string = '';
   @Prop() apiBase!: string;
-  @Prop() orderId?: string; // "new" or undefined => create
+  @Prop() orderId?: string;
   @State() order: Partial<Order> = { items: [] as OrderItem[] };
+  @State() errorMessage: string = '';
   api?: PharmacyOrdersApi;
 
   async componentWillLoad() {
@@ -21,6 +22,7 @@ export class PmdlPharmacyOrderEditor {
         this.order = await this.api!.getOrder({ pharmacyId: this.pharmacyId, orderId: this.orderId });
       } catch (e) {
         console.error(e);
+        this.errorMessage = 'Chyba pri načítaní objednávky';
       }
     } else {
       this.order = {
@@ -70,7 +72,6 @@ export class PmdlPharmacyOrderEditor {
       let res;
       if (!this.orderId || this.orderId === '@new' || payload.id === '@new') {
         res = await this.api!.createOrder({ pharmacyId: this.pharmacyId, order: payload });
-        // navigate to detail
         location.href = `${ordersBasePath}/orders/${res.id}`;
       } else {
         res = await this.api!.updateOrder({ pharmacyId: this.pharmacyId, orderId: this.orderId, order: payload });
@@ -78,38 +79,97 @@ export class PmdlPharmacyOrderEditor {
       }
     } catch (e) {
       console.error('save order', e);
-      alert('Objednávku sa nepodarilo uložiť');
+      this.errorMessage = 'Objednávku sa nepodarilo uložiť';
     }
+  }
+
+  goBack() {
+    const ordersBasePath = this.basePath.replace(/\/$/, '');
+    window.navigation.navigate(`${ordersBasePath}/orders`);
   }
 
   render() {
     const items = (this.order.items || []) as OrderItem[];
     return (
-      <div>
-        <h3>{this.orderId && this.orderId !== '@new' ? 'Upraviť objednávku' : 'Nová objednávka'}</h3>
-        <h4>Položky</h4>
-        <div>
-          {items.map((it, idx) => (
-            <div class="item-row">
-              <input placeholder="medicineId" value={it.medicineId} onInput={e => this.updateItem(idx, 'medicineId', (e.target as any).value)} />
-              <input placeholder="name" value={it.medicineName} onInput={e => this.updateItem(idx, 'medicineName', (e.target as any).value)} />
-              <input type="number" value={it.quantity} onInput={e => this.updateItem(idx, 'quantity', parseInt((e.target as any).value || '0'))} />
-              <input placeholder="unit" value={it.unit} onInput={e => this.updateItem(idx, 'unit', (e.target as any).value)} />
-              <input type="number" step="0.01" value={it.unitPrice} onInput={e => this.updateItem(idx, 'unitPrice', parseFloat((e.target as any).value || '0'))} />
-              <span>{it.totalPrice?.toFixed(2) || '0.00'}</span>
-              <button onClick={() => this.removeItem(idx)}>Odstrániť</button>
-            </div>
-          ))}
-        </div>
-        <button onClick={() => this.addItem()}>Pridať položku</button>
-        <label>Poznámka
-          <textarea value={this.order.notes || ''} onInput={e => (this.order = { ...this.order, notes: (e.target as any).value })} />
-        </label>
+      <Host>
+        <h2 class="title">{this.orderId && this.orderId !== '@new' ? 'Upraviť objednávku' : 'Nová objednávka'}</h2>
+
+        {this.errorMessage && <div class="error">{this.errorMessage}</div>}
+
+        <form class="form">
+          <md-filled-text-field
+            label="Poznámka"
+            multiline
+            rows="3"
+            value={this.order.notes || ''}
+            oninput={(ev: InputEvent) => (this.order = { ...this.order, notes: (ev.target as HTMLInputElement).value })}
+          >
+            <md-icon slot="leading-icon">note</md-icon>
+          </md-filled-text-field>
+        </form>
+
+        <h3 class="section-title">Položky</h3>
+        {items.length === 0 ? (
+          <div class="empty-state">Žiadne položky</div>
+        ) : (
+          <div>
+            {items.map((it, idx) => (
+              <div class="item-row">
+                <md-filled-text-field
+                  label="ID lieku"
+                  value={it.medicineId}
+                  oninput={(ev: InputEvent) => this.updateItem(idx, 'medicineId', (ev.target as HTMLInputElement).value)}
+                />
+                <md-filled-text-field
+                  label="Názov"
+                  value={it.medicineName}
+                  oninput={(ev: InputEvent) => this.updateItem(idx, 'medicineName', (ev.target as HTMLInputElement).value)}
+                />
+                <md-filled-text-field
+                  label="Množstvo"
+                  type="number"
+                  value={String(it.quantity || 0)}
+                  oninput={(ev: InputEvent) => this.updateItem(idx, 'quantity', parseInt((ev.target as HTMLInputElement).value || '0'))}
+                />
+                <md-filled-text-field
+                  label="Jednotka"
+                  value={it.unit}
+                  oninput={(ev: InputEvent) => this.updateItem(idx, 'unit', (ev.target as HTMLInputElement).value)}
+                />
+                <md-filled-text-field
+                  label="Cena za jednotku"
+                  type="number"
+                  step="0.01"
+                  value={String(it.unitPrice || 0)}
+                  oninput={(ev: InputEvent) => this.updateItem(idx, 'unitPrice', parseFloat((ev.target as HTMLInputElement).value || '0'))}
+                />
+                <div class="item-summary">
+                  <span class="item-total">Spolu: {(it.totalPrice || 0).toFixed(2)}</span>
+                  <md-filled-tonal-button onClick={() => this.removeItem(idx)} class="remove-item-button">
+                    <md-icon slot="icon">delete</md-icon>
+                  </md-filled-tonal-button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <md-filled-button onClick={() => this.addItem()} class="add-item-button">
+          <md-icon slot="icon">add</md-icon>
+          Pridať položku
+        </md-filled-button>
+
+        <md-divider inset class="section-divider"></md-divider>
+
         <div class="actions">
-          <button onClick={() => this.save()}>Uložiť</button>
-          <a href={`${this.basePath.replace(/\/$/, '')}/orders`}>Späť</a>
+          <span class="stretch-fill"></span>
+          <md-outlined-button onClick={() => this.goBack()}>Zrušiť</md-outlined-button>
+          <md-filled-button onClick={() => this.save()}>
+            <md-icon slot="icon">save</md-icon>
+            Uložiť
+          </md-filled-button>
         </div>
-      </div>
+      </Host>
     );
   }
 }

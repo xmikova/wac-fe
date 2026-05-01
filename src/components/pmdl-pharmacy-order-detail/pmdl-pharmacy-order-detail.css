@@ -1,55 +1,76 @@
 :host {
-    display: block;
-    padding: 12px
+  display: block;
+  padding: 16px;
+}
+
+.title {
+  margin: 0 0 16px 0;
+  font-size: 1.25rem;
 }
 
 h3 {
-    margin: 0 0 8px 0
+  margin: 16px 0 8px 0;
+  font-size: 1.1rem;
+}
+
+.section-title {
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+.section-title.compact {
+  margin-bottom: 8px;
+}
+
+.details-meta {
+  margin-bottom: 16px;
+}
+
+.details-row {
+  margin-bottom: 8px;
+}
+
+.status-badge {
+  margin-left: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+}
+
+.empty-state {
+  padding: 8px;
+  color: #666;
+}
+
+.section-divider {
+  margin: 16px 0;
+}
+
+.error {
+  padding: 8px;
+  margin-bottom: 12px;
+  color: var(--md-sys-color-error, #b3261e);
+  background: var(--md-sys-color-error-container, #f9dedc);
+  border-radius: 4px;
 }
 
 .status-actions {
-    display: flex;
-    gap: 8px;
-    margin: 12px 0
+  display: flex;
+  gap: 8px;
+  margin: 12px 0;
+  flex-wrap: wrap;
 }
 
-.status-actions button {
-    padding: 8px 10px;
-    border-radius: 6px;
-    border: none;
-    background: #e2e8f0;
-    color: #111
+.actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 16px;
+  gap: 8px;
 }
 
-.status-actions button:first-child {
-    background: #2b6cb0;
-    color: #fff
-}
-
-ul {
-    padding-left: 18px;
-    margin: 8px 0
-}
-
-.nav {
-    margin-top: 12px;
-    display: flex;
-    gap: 8px
-}
-
-.nav a {
-    color: #2b6cb0;
-    text-decoration: none
-}
-
-.delete-btn {
-    padding: 8px 12px;
-    border-radius: 4px;
-    border: none;
-    background: #dc2626;
-    color: #fff;
-    cursor: pointer;
-    font-size: 0.9rem;
+.stretch-fill {
+  flex: 1;
 }
 
 .delete-btn:hover {
