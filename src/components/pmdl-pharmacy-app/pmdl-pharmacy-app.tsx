@@ -109,20 +109,22 @@ export class PmdlPharmacyApp {
         ) : (
           // list views - with tabs
           <>
-            <div class="tabs-header">
-              <button
-                class={`tab ${activeTab === 'medicines' ? 'active' : ''}`}
+            <md-tabs class="tabs-header">
+              <md-primary-tab
+                class={activeTab === 'medicines' ? 'active' : ''}
+                active={activeTab === 'medicines'}
                 onClick={() => navigate('./')}
               >
                 Lieky
-              </button>
-              <button
-                class={`tab ${activeTab === 'orders' ? 'active' : ''}`}
+              </md-primary-tab>
+              <md-primary-tab
+                class={activeTab === 'orders' ? 'active' : ''}
+                active={activeTab === 'orders'}
                 onClick={() => navigate('./orders')}
               >
                 Objednávky
-              </button>
-            </div>
+              </md-primary-tab>
+            </md-tabs>
             {element === 'list' ? (
               <pmdl-pharmacy-list
                 api-base={this.apiBase}
