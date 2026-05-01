@@ -9,17 +9,19 @@ import { PharmacyOrdersApi, Configuration, OrderStatus, Order, OrderItem } from 
 export class PmdlPharmacyOrderDetail {
   @Prop() pharmacyId!: string;
   @Prop() basePath: string = '';
+  @Prop() apiBase!: string;
   @Prop() orderId!: string;
   @State() order: Order | null = null;
-  api = new PharmacyOrdersApi(new Configuration({ basePath: '/api' }));
+  api?: PharmacyOrdersApi;
 
   async componentWillLoad() {
+    this.api = new PharmacyOrdersApi(new Configuration({ basePath: this.apiBase || '/api' }));
     await this.load();
   }
 
   async load() {
     try {
-      this.order = await this.api.getOrder({ pharmacyId: this.pharmacyId, orderId: this.orderId });
+      this.order = await this.api!.getOrder({ pharmacyId: this.pharmacyId, orderId: this.orderId });
     } catch (e) {
       console.error(e);
     }
@@ -28,7 +30,7 @@ export class PmdlPharmacyOrderDetail {
   async setStatus(status: OrderStatus) {
     try {
       const payload = { status };
-      this.order = await this.api.updateOrderStatus({ pharmacyId: this.pharmacyId, orderId: this.orderId, updateOrderStatusRequest: payload });
+      this.order = await this.api!.updateOrderStatus({ pharmacyId: this.pharmacyId, orderId: this.orderId, updateOrderStatusRequest: payload });
     } catch (e) {
       console.error('setStatus', e);
       alert('Failed to update status');

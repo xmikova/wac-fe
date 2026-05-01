@@ -9,14 +9,16 @@ import { PharmacyOrdersApi, Configuration, Order, OrderItem, OrderStatus } from 
 export class PmdlPharmacyOrderEditor {
   @Prop() pharmacyId!: string;
   @Prop() basePath: string = '';
+  @Prop() apiBase!: string;
   @Prop() orderId?: string; // "new" or undefined => create
   @State() order: Partial<Order> = { items: [] as OrderItem[] };
-  api = new PharmacyOrdersApi(new Configuration({ basePath: '/api' }));
+  api?: PharmacyOrdersApi;
 
   async componentWillLoad() {
-    if (this.orderId && this.orderId !== 'new') {
+    this.api = new PharmacyOrdersApi(new Configuration({ basePath: this.apiBase || '/api' }));
+    if (this.orderId && this.orderId !== '@new') {
       try {
-        this.order = await this.api.getOrder({ pharmacyId: this.pharmacyId, orderId: this.orderId });
+        this.order = await this.api!.getOrder({ pharmacyId: this.pharmacyId, orderId: this.orderId });
       } catch (e) {
         console.error(e);
       }
@@ -65,12 +67,12 @@ export class PmdlPharmacyOrderEditor {
         pharmacyId: this.pharmacyId,
       } as Order;
       let res;
-      if (!this.orderId || this.orderId === 'new' || payload.id === '@new') {
-        res = await this.api.createOrder({ pharmacyId: this.pharmacyId, order: payload });
+      if (!this.orderId || this.orderId === '@new' || payload.id === '@new') {
+        res = await this.api!.createOrder({ pharmacyId: this.pharmacyId, order: payload });
         // navigate to detail
         location.href = `${ordersBasePath}/orders/${res.id}`;
       } else {
-        res = await this.api.updateOrder({ pharmacyId: this.pharmacyId, orderId: this.orderId, order: payload });
+        res = await this.api!.updateOrder({ pharmacyId: this.pharmacyId, orderId: this.orderId, order: payload });
         location.href = `${ordersBasePath}/orders/${res.id}`;
       }
     } catch (e) {

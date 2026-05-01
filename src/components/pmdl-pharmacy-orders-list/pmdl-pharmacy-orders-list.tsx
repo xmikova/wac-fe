@@ -9,16 +9,18 @@ import { PharmacyOrdersApi, Configuration } from '../../api/ambulance-wl';
 export class PmdlPharmacyOrdersList {
   @Prop() pharmacyId!: string;
   @Prop() basePath: string = '';
+  @Prop() apiBase!: string;
   @State() orders: any[] = [];
-  api = new PharmacyOrdersApi(new Configuration({ basePath: '/api' }));
+  api?: PharmacyOrdersApi;
 
   async componentWillLoad() {
+    this.api = new PharmacyOrdersApi(new Configuration({ basePath: this.apiBase || '/api' }));
     await this.load();
   }
 
   async load() {
     try {
-      this.orders = await this.api.getOrders({ pharmacyId: this.pharmacyId });
+      this.orders = await this.api!.getOrders({ pharmacyId: this.pharmacyId });
     } catch (e) {
       console.error('load orders', e);
       this.orders = [];

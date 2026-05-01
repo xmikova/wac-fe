@@ -27,6 +27,7 @@ export namespace Components {
         "pharmacyId": string;
     }
     interface PmdlPharmacyOrderDetail {
+        "apiBase": string;
         /**
           * @default ''
          */
@@ -35,6 +36,7 @@ export namespace Components {
         "pharmacyId": string;
     }
     interface PmdlPharmacyOrderEditor {
+        "apiBase": string;
         /**
           * @default ''
          */
@@ -43,6 +45,7 @@ export namespace Components {
         "pharmacyId": string;
     }
     interface PmdlPharmacyOrdersList {
+        "apiBase": string;
         /**
           * @default ''
          */
@@ -152,6 +155,7 @@ declare namespace LocalJSX {
         "pharmacyId"?: string;
     }
     interface PmdlPharmacyOrderDetail {
+        "apiBase": string;
         /**
           * @default ''
          */
@@ -160,6 +164,7 @@ declare namespace LocalJSX {
         "pharmacyId": string;
     }
     interface PmdlPharmacyOrderEditor {
+        "apiBase": string;
         /**
           * @default ''
          */
@@ -168,6 +173,7 @@ declare namespace LocalJSX {
         "pharmacyId": string;
     }
     interface PmdlPharmacyOrdersList {
+        "apiBase": string;
         /**
           * @default ''
          */
@@ -192,25 +198,28 @@ declare namespace LocalJSX {
     interface PmdlPharmacyOrderDetailAttributes {
         "pharmacyId": string;
         "basePath": string;
+        "apiBase": string;
         "orderId": string;
     }
     interface PmdlPharmacyOrderEditorAttributes {
         "pharmacyId": string;
         "basePath": string;
+        "apiBase": string;
         "orderId": string;
     }
     interface PmdlPharmacyOrdersListAttributes {
         "pharmacyId": string;
         "basePath": string;
+        "apiBase": string;
     }
 
     interface IntrinsicElements {
         "pmdl-pharmacy-app": Omit<PmdlPharmacyApp, keyof PmdlPharmacyAppAttributes> & { [K in keyof PmdlPharmacyApp & keyof PmdlPharmacyAppAttributes]?: PmdlPharmacyApp[K] } & { [K in keyof PmdlPharmacyApp & keyof PmdlPharmacyAppAttributes as `attr:${K}`]?: PmdlPharmacyAppAttributes[K] } & { [K in keyof PmdlPharmacyApp & keyof PmdlPharmacyAppAttributes as `prop:${K}`]?: PmdlPharmacyApp[K] } & OneOf<"apiBase", PmdlPharmacyApp["apiBase"], PmdlPharmacyAppAttributes["apiBase"]>;
         "pmdl-pharmacy-editor": Omit<PmdlPharmacyEditor, keyof PmdlPharmacyEditorAttributes> & { [K in keyof PmdlPharmacyEditor & keyof PmdlPharmacyEditorAttributes]?: PmdlPharmacyEditor[K] } & { [K in keyof PmdlPharmacyEditor & keyof PmdlPharmacyEditorAttributes as `attr:${K}`]?: PmdlPharmacyEditorAttributes[K] } & { [K in keyof PmdlPharmacyEditor & keyof PmdlPharmacyEditorAttributes as `prop:${K}`]?: PmdlPharmacyEditor[K] };
         "pmdl-pharmacy-list": Omit<PmdlPharmacyList, keyof PmdlPharmacyListAttributes> & { [K in keyof PmdlPharmacyList & keyof PmdlPharmacyListAttributes]?: PmdlPharmacyList[K] } & { [K in keyof PmdlPharmacyList & keyof PmdlPharmacyListAttributes as `attr:${K}`]?: PmdlPharmacyListAttributes[K] } & { [K in keyof PmdlPharmacyList & keyof PmdlPharmacyListAttributes as `prop:${K}`]?: PmdlPharmacyList[K] };
-        "pmdl-pharmacy-order-detail": Omit<PmdlPharmacyOrderDetail, keyof PmdlPharmacyOrderDetailAttributes> & { [K in keyof PmdlPharmacyOrderDetail & keyof PmdlPharmacyOrderDetailAttributes]?: PmdlPharmacyOrderDetail[K] } & { [K in keyof PmdlPharmacyOrderDetail & keyof PmdlPharmacyOrderDetailAttributes as `attr:${K}`]?: PmdlPharmacyOrderDetailAttributes[K] } & { [K in keyof PmdlPharmacyOrderDetail & keyof PmdlPharmacyOrderDetailAttributes as `prop:${K}`]?: PmdlPharmacyOrderDetail[K] } & OneOf<"pharmacyId", PmdlPharmacyOrderDetail["pharmacyId"], PmdlPharmacyOrderDetailAttributes["pharmacyId"]> & OneOf<"orderId", PmdlPharmacyOrderDetail["orderId"], PmdlPharmacyOrderDetailAttributes["orderId"]>;
-        "pmdl-pharmacy-order-editor": Omit<PmdlPharmacyOrderEditor, keyof PmdlPharmacyOrderEditorAttributes> & { [K in keyof PmdlPharmacyOrderEditor & keyof PmdlPharmacyOrderEditorAttributes]?: PmdlPharmacyOrderEditor[K] } & { [K in keyof PmdlPharmacyOrderEditor & keyof PmdlPharmacyOrderEditorAttributes as `attr:${K}`]?: PmdlPharmacyOrderEditorAttributes[K] } & { [K in keyof PmdlPharmacyOrderEditor & keyof PmdlPharmacyOrderEditorAttributes as `prop:${K}`]?: PmdlPharmacyOrderEditor[K] } & OneOf<"pharmacyId", PmdlPharmacyOrderEditor["pharmacyId"], PmdlPharmacyOrderEditorAttributes["pharmacyId"]>;
-        "pmdl-pharmacy-orders-list": Omit<PmdlPharmacyOrdersList, keyof PmdlPharmacyOrdersListAttributes> & { [K in keyof PmdlPharmacyOrdersList & keyof PmdlPharmacyOrdersListAttributes]?: PmdlPharmacyOrdersList[K] } & { [K in keyof PmdlPharmacyOrdersList & keyof PmdlPharmacyOrdersListAttributes as `attr:${K}`]?: PmdlPharmacyOrdersListAttributes[K] } & { [K in keyof PmdlPharmacyOrdersList & keyof PmdlPharmacyOrdersListAttributes as `prop:${K}`]?: PmdlPharmacyOrdersList[K] } & OneOf<"pharmacyId", PmdlPharmacyOrdersList["pharmacyId"], PmdlPharmacyOrdersListAttributes["pharmacyId"]>;
+        "pmdl-pharmacy-order-detail": Omit<PmdlPharmacyOrderDetail, keyof PmdlPharmacyOrderDetailAttributes> & { [K in keyof PmdlPharmacyOrderDetail & keyof PmdlPharmacyOrderDetailAttributes]?: PmdlPharmacyOrderDetail[K] } & { [K in keyof PmdlPharmacyOrderDetail & keyof PmdlPharmacyOrderDetailAttributes as `attr:${K}`]?: PmdlPharmacyOrderDetailAttributes[K] } & { [K in keyof PmdlPharmacyOrderDetail & keyof PmdlPharmacyOrderDetailAttributes as `prop:${K}`]?: PmdlPharmacyOrderDetail[K] } & OneOf<"pharmacyId", PmdlPharmacyOrderDetail["pharmacyId"], PmdlPharmacyOrderDetailAttributes["pharmacyId"]> & OneOf<"apiBase", PmdlPharmacyOrderDetail["apiBase"], PmdlPharmacyOrderDetailAttributes["apiBase"]> & OneOf<"orderId", PmdlPharmacyOrderDetail["orderId"], PmdlPharmacyOrderDetailAttributes["orderId"]>;
+        "pmdl-pharmacy-order-editor": Omit<PmdlPharmacyOrderEditor, keyof PmdlPharmacyOrderEditorAttributes> & { [K in keyof PmdlPharmacyOrderEditor & keyof PmdlPharmacyOrderEditorAttributes]?: PmdlPharmacyOrderEditor[K] } & { [K in keyof PmdlPharmacyOrderEditor & keyof PmdlPharmacyOrderEditorAttributes as `attr:${K}`]?: PmdlPharmacyOrderEditorAttributes[K] } & { [K in keyof PmdlPharmacyOrderEditor & keyof PmdlPharmacyOrderEditorAttributes as `prop:${K}`]?: PmdlPharmacyOrderEditor[K] } & OneOf<"pharmacyId", PmdlPharmacyOrderEditor["pharmacyId"], PmdlPharmacyOrderEditorAttributes["pharmacyId"]> & OneOf<"apiBase", PmdlPharmacyOrderEditor["apiBase"], PmdlPharmacyOrderEditorAttributes["apiBase"]>;
+        "pmdl-pharmacy-orders-list": Omit<PmdlPharmacyOrdersList, keyof PmdlPharmacyOrdersListAttributes> & { [K in keyof PmdlPharmacyOrdersList & keyof PmdlPharmacyOrdersListAttributes]?: PmdlPharmacyOrdersList[K] } & { [K in keyof PmdlPharmacyOrdersList & keyof PmdlPharmacyOrdersListAttributes as `attr:${K}`]?: PmdlPharmacyOrdersListAttributes[K] } & { [K in keyof PmdlPharmacyOrdersList & keyof PmdlPharmacyOrdersListAttributes as `prop:${K}`]?: PmdlPharmacyOrdersList[K] } & OneOf<"pharmacyId", PmdlPharmacyOrdersList["pharmacyId"], PmdlPharmacyOrdersListAttributes["pharmacyId"]> & OneOf<"apiBase", PmdlPharmacyOrdersList["apiBase"], PmdlPharmacyOrdersListAttributes["apiBase"]>;
     }
 }
 export { LocalJSX as JSX };

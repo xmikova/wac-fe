@@ -36,6 +36,7 @@ export class PmdlPharmacyApp {
     let element = 'list';
     let medicineId = '@new';
     let orderId = '@new';
+    let activeTab = 'medicines';
 
     // Normalize relativePath (remove trailing slash)
     const path = this.relativePath.replace(/\/$/, '');
@@ -64,8 +65,12 @@ export class PmdlPharmacyApp {
       orderId = parts[1];
     }
     else if (path === 'orders') {
-      // orders list
       element = 'orders-list';
+      activeTab = 'orders';
+    }
+    else {
+      element = 'list';
+      activeTab = 'medicines';
     }
 
     const navigate = (path: string) => {
@@ -75,36 +80,63 @@ export class PmdlPharmacyApp {
 
     return (
       <Host>
-        {element === 'editor' ? (
-          <pmdl-pharmacy-editor
-            medicine-id={medicineId}
-            pharmacy-id={this.pharmacyId}
-            api-base={this.apiBase}
-            oneditor-closed={() => navigate('./list')}
-          ></pmdl-pharmacy-editor>
-        ) : element === 'orders-list' ? (
-          <pmdl-pharmacy-orders-list
-            pharmacyId={this.pharmacyId}
-            basePath={this.basePath}
-          ></pmdl-pharmacy-orders-list>
-        ) : element === 'orders-editor' ? (
-          <pmdl-pharmacy-order-editor
-            pharmacyId={this.pharmacyId}
-            basePath={this.basePath}
-            orderId={orderId}
-          ></pmdl-pharmacy-order-editor>
-        ) : element === 'orders-detail' ? (
-          <pmdl-pharmacy-order-detail
-            pharmacyId={this.pharmacyId}
-            basePath={this.basePath}
-            orderId={orderId}
-          ></pmdl-pharmacy-order-detail>
+        {element === 'editor' || element === 'orders-editor' || element === 'orders-detail' ? (
+          // editor/detail views - no tabs
+          <>
+            {element === 'editor' ? (
+              <pmdl-pharmacy-editor
+                medicine-id={medicineId}
+                pharmacy-id={this.pharmacyId}
+                api-base={this.apiBase}
+                oneditor-closed={() => navigate('./list')}
+              ></pmdl-pharmacy-editor>
+            ) : element === 'orders-editor' ? (
+              <pmdl-pharmacy-order-editor
+                pharmacyId={this.pharmacyId}
+                basePath={this.basePath}
+                apiBase={this.apiBase}
+                orderId={orderId}
+              ></pmdl-pharmacy-order-editor>
+            ) : element === 'orders-detail' ? (
+              <pmdl-pharmacy-order-detail
+                pharmacyId={this.pharmacyId}
+                basePath={this.basePath}
+                apiBase={this.apiBase}
+                orderId={orderId}
+              ></pmdl-pharmacy-order-detail>
+            ) : null}
+          </>
         ) : (
-          <pmdl-pharmacy-list
-            api-base={this.apiBase}
-            pharmacy-id={this.pharmacyId}
-            onentry-clicked={(ev: CustomEvent<string>) => navigate('./medicine/' + ev.detail)}
-          ></pmdl-pharmacy-list>
+          // list views - with tabs
+          <>
+            <div class="tabs-header">
+              <button
+                class={`tab ${activeTab === 'medicines' ? 'active' : ''}`}
+                onClick={() => navigate('./')}
+              >
+                Lieky
+              </button>
+              <button
+                class={`tab ${activeTab === 'orders' ? 'active' : ''}`}
+                onClick={() => navigate('./orders')}
+              >
+                Objednávky
+              </button>
+            </div>
+            {element === 'list' ? (
+              <pmdl-pharmacy-list
+                api-base={this.apiBase}
+                pharmacy-id={this.pharmacyId}
+                onentry-clicked={(ev: CustomEvent<string>) => navigate('./medicine/' + ev.detail)}
+              ></pmdl-pharmacy-list>
+            ) : element === 'orders-list' ? (
+              <pmdl-pharmacy-orders-list
+                pharmacyId={this.pharmacyId}
+                basePath={this.basePath}
+                apiBase={this.apiBase}
+              ></pmdl-pharmacy-orders-list>
+            ) : null}
+          </>
         )}
       </Host>
     );

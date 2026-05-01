@@ -2,3 +2,31 @@
   display: block;
   height: 100%;
 }
+
+.tabs-header {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  border-bottom: 1px solid #e0e0e0;
+  background-color: #fafafa;
+}
+
+.tab {
+  padding: 8px 16px;
+  border: none;
+  background-color: transparent;
+  color: #666;
+  font-size: 0.95rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.tab:hover {
+  color: #333;
+}
+
+.tab.active {
+  color: #2b6cb0;
+  border-bottom-color: #2b6cb0;
+}
