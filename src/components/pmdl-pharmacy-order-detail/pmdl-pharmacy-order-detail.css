@@ -41,3 +41,17 @@ ul {
     color: #2b6cb0;
     text-decoration: none
 }
+
+.delete-btn {
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: none;
+    background: #dc2626;
+    color: #fff;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.delete-btn:hover {
+    background: #b91c1c;
+}

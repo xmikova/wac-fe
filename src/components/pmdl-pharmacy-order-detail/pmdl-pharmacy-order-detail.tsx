@@ -37,6 +37,17 @@ export class PmdlPharmacyOrderDetail {
     }
   }
 
+  async delete() {
+    try {
+      await this.api!.deleteOrder({ pharmacyId: this.pharmacyId, orderId: this.orderId });
+      const ordersBasePath = this.basePath.replace(/\/$/, '');
+      location.href = `${ordersBasePath}/orders`;
+    } catch (e) {
+      console.error('delete order', e);
+      alert('Objednávku sa nepodarilo odstrániť');
+    }
+  }
+
   render() {
     const ordersBasePath = this.basePath.replace(/\/$/, '');
 
@@ -62,6 +73,7 @@ export class PmdlPharmacyOrderDetail {
         <div class="nav">
           <a href={`${ordersBasePath}/orders`}>Späť</a>
           <a href={`${ordersBasePath}/orders/${this.order.id}/edit`}>Upraviť objednávku</a>
+          <button class="delete-btn" onClick={() => this.delete()}>Odstrániť objednávku</button>
         </div>
       </div>
     );
