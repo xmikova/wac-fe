@@ -1,20 +1,21 @@
-import { Component, Host, Prop, State, h, render } from '@stencil/core';
+import { Component, Host, Prop, State, h } from '@stencil/core';
 
 declare global {
   interface Window {
     navigation: any;
   }
 }
+
 @Component({
-  tag: 'pmi-ambulance-wl-app',
-  styleUrl: 'pmi-ambulance-wl-app.css',
+  tag: 'pmdl-pharmacy-app',
+  styleUrl: 'pmdl-pharmacy-app.css',
   shadow: true,
 })
-export class PmiAmbulanceWlApp {
+export class PmdlPharmacyApp {
   @State() private relativePath = '';
   @Prop() basePath: string = '';
   @Prop() apiBase: string;
-  @Prop() ambulanceId: string;
+  @Prop() pharmacyId: string = 'pmdl-pharmacy';
 
   componentWillLoad() {
     const baseUri = new URL(this.basePath, document.baseURI || '/').pathname;
@@ -31,21 +32,19 @@ export class PmiAmbulanceWlApp {
       if ((ev as any).canIntercept) {
         (ev as any).intercept();
       }
-      let path = new URL((ev as any).destination.url).pathname;
-      toRelative(path);
+      toRelative(new URL((ev as any).destination.url).pathname);
     });
 
     toRelative(location.pathname);
   }
 
   render() {
-    console.debug("<pfx>-ambulance-wl-app.render() - path: %s", this.relativePath);
     let element = 'list';
-    let entryId = '@new';
+    let medicineId = '@new';
 
-    if (this.relativePath.startsWith('entry/')) {
+    if (this.relativePath.startsWith('medicine/')) {
       element = 'editor';
-      entryId = this.relativePath.split('/')[1];
+      medicineId = this.relativePath.split('/')[1];
     }
 
     const navigate = (path: string) => {
@@ -56,13 +55,18 @@ export class PmiAmbulanceWlApp {
     return (
       <Host>
         {element === 'editor' ? (
-          <pmi-ambulance-wl-editor entry-id={entryId} ambulance-id={this.ambulanceId} api-base={this.apiBase} oneditor-closed={() => navigate('./list')}></pmi-ambulance-wl-editor>
-        ) : (
-          <pmi-ambulance-wl-list
+          <pmdl-pharmacy-editor
+            medicine-id={medicineId}
+            pharmacy-id={this.pharmacyId}
             api-base={this.apiBase}
-            ambulance-id={this.ambulanceId}
-            onentry-clicked={(ev: CustomEvent<string>) => navigate('./entry/' + ev.detail)}
-          ></pmi-ambulance-wl-list>
+            oneditor-closed={() => navigate('./list')}
+          ></pmdl-pharmacy-editor>
+        ) : (
+          <pmdl-pharmacy-list
+            api-base={this.apiBase}
+            pharmacy-id={this.pharmacyId}
+            onentry-clicked={(ev: CustomEvent<string>) => navigate('./medicine/' + ev.detail)}
+          ></pmdl-pharmacy-list>
         )}
       </Host>
     );

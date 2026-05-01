@@ -6,128 +6,134 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface PmiAmbulanceWlApp {
-        "ambulanceId": string;
+    interface PmdlPharmacyApp {
         "apiBase": string;
         /**
           * @default ''
          */
         "basePath": string;
+        /**
+          * @default 'pmdl-pharmacy'
+         */
+        "pharmacyId": string;
     }
-    interface PmiAmbulanceWlEditor {
-        "ambulanceId": string;
+    interface PmdlPharmacyEditor {
         "apiBase": string;
-        "entryId": string;
+        "medicineId": string;
+        "pharmacyId": string;
     }
-    interface PmiAmbulanceWlList {
-        "ambulanceId": string;
+    interface PmdlPharmacyList {
         "apiBase": string;
+        "pharmacyId": string;
     }
 }
-export interface PmiAmbulanceWlEditorCustomEvent<T> extends CustomEvent<T> {
+export interface PmdlPharmacyEditorCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLPmiAmbulanceWlEditorElement;
+    target: HTMLPmdlPharmacyEditorElement;
 }
-export interface PmiAmbulanceWlListCustomEvent<T> extends CustomEvent<T> {
+export interface PmdlPharmacyListCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLPmiAmbulanceWlListElement;
+    target: HTMLPmdlPharmacyListElement;
 }
 declare global {
-    interface HTMLPmiAmbulanceWlAppElement extends Components.PmiAmbulanceWlApp, HTMLStencilElement {
+    interface HTMLPmdlPharmacyAppElement extends Components.PmdlPharmacyApp, HTMLStencilElement {
     }
-    var HTMLPmiAmbulanceWlAppElement: {
-        prototype: HTMLPmiAmbulanceWlAppElement;
-        new (): HTMLPmiAmbulanceWlAppElement;
+    var HTMLPmdlPharmacyAppElement: {
+        prototype: HTMLPmdlPharmacyAppElement;
+        new (): HTMLPmdlPharmacyAppElement;
     };
-    interface HTMLPmiAmbulanceWlEditorElementEventMap {
+    interface HTMLPmdlPharmacyEditorElementEventMap {
         "editor-closed": string;
     }
-    interface HTMLPmiAmbulanceWlEditorElement extends Components.PmiAmbulanceWlEditor, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPmiAmbulanceWlEditorElementEventMap>(type: K, listener: (this: HTMLPmiAmbulanceWlEditorElement, ev: PmiAmbulanceWlEditorCustomEvent<HTMLPmiAmbulanceWlEditorElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    interface HTMLPmdlPharmacyEditorElement extends Components.PmdlPharmacyEditor, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPmdlPharmacyEditorElementEventMap>(type: K, listener: (this: HTMLPmdlPharmacyEditorElement, ev: PmdlPharmacyEditorCustomEvent<HTMLPmdlPharmacyEditorElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPmiAmbulanceWlEditorElementEventMap>(type: K, listener: (this: HTMLPmiAmbulanceWlEditorElement, ev: PmiAmbulanceWlEditorCustomEvent<HTMLPmiAmbulanceWlEditorElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPmdlPharmacyEditorElementEventMap>(type: K, listener: (this: HTMLPmdlPharmacyEditorElement, ev: PmdlPharmacyEditorCustomEvent<HTMLPmdlPharmacyEditorElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLPmiAmbulanceWlEditorElement: {
-        prototype: HTMLPmiAmbulanceWlEditorElement;
-        new (): HTMLPmiAmbulanceWlEditorElement;
+    var HTMLPmdlPharmacyEditorElement: {
+        prototype: HTMLPmdlPharmacyEditorElement;
+        new (): HTMLPmdlPharmacyEditorElement;
     };
-    interface HTMLPmiAmbulanceWlListElementEventMap {
+    interface HTMLPmdlPharmacyListElementEventMap {
         "entry-clicked": string;
     }
-    interface HTMLPmiAmbulanceWlListElement extends Components.PmiAmbulanceWlList, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPmiAmbulanceWlListElementEventMap>(type: K, listener: (this: HTMLPmiAmbulanceWlListElement, ev: PmiAmbulanceWlListCustomEvent<HTMLPmiAmbulanceWlListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+    interface HTMLPmdlPharmacyListElement extends Components.PmdlPharmacyList, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPmdlPharmacyListElementEventMap>(type: K, listener: (this: HTMLPmdlPharmacyListElement, ev: PmdlPharmacyListCustomEvent<HTMLPmdlPharmacyListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPmiAmbulanceWlListElementEventMap>(type: K, listener: (this: HTMLPmiAmbulanceWlListElement, ev: PmiAmbulanceWlListCustomEvent<HTMLPmiAmbulanceWlListElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPmdlPharmacyListElementEventMap>(type: K, listener: (this: HTMLPmdlPharmacyListElement, ev: PmdlPharmacyListCustomEvent<HTMLPmdlPharmacyListElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-    var HTMLPmiAmbulanceWlListElement: {
-        prototype: HTMLPmiAmbulanceWlListElement;
-        new (): HTMLPmiAmbulanceWlListElement;
+    var HTMLPmdlPharmacyListElement: {
+        prototype: HTMLPmdlPharmacyListElement;
+        new (): HTMLPmdlPharmacyListElement;
     };
     interface HTMLElementTagNameMap {
-        "pmi-ambulance-wl-app": HTMLPmiAmbulanceWlAppElement;
-        "pmi-ambulance-wl-editor": HTMLPmiAmbulanceWlEditorElement;
-        "pmi-ambulance-wl-list": HTMLPmiAmbulanceWlListElement;
+        "pmdl-pharmacy-app": HTMLPmdlPharmacyAppElement;
+        "pmdl-pharmacy-editor": HTMLPmdlPharmacyEditorElement;
+        "pmdl-pharmacy-list": HTMLPmdlPharmacyListElement;
     }
 }
 declare namespace LocalJSX {
-    interface PmiAmbulanceWlApp {
-        "ambulanceId"?: string;
+    interface PmdlPharmacyApp {
         "apiBase"?: string;
         /**
           * @default ''
          */
         "basePath"?: string;
+        /**
+          * @default 'pmdl-pharmacy'
+         */
+        "pharmacyId"?: string;
     }
-    interface PmiAmbulanceWlEditor {
-        "ambulanceId"?: string;
+    interface PmdlPharmacyEditor {
         "apiBase"?: string;
-        "entryId"?: string;
-        "onEditor-closed"?: (event: PmiAmbulanceWlEditorCustomEvent<string>) => void;
+        "medicineId"?: string;
+        "onEditor-closed"?: (event: PmdlPharmacyEditorCustomEvent<string>) => void;
+        "pharmacyId"?: string;
     }
-    interface PmiAmbulanceWlList {
-        "ambulanceId"?: string;
+    interface PmdlPharmacyList {
         "apiBase"?: string;
-        "onEntry-clicked"?: (event: PmiAmbulanceWlListCustomEvent<string>) => void;
+        "onEntry-clicked"?: (event: PmdlPharmacyListCustomEvent<string>) => void;
+        "pharmacyId"?: string;
     }
 
-    interface PmiAmbulanceWlAppAttributes {
+    interface PmdlPharmacyAppAttributes {
         "basePath": string;
         "apiBase": string;
-        "ambulanceId": string;
+        "pharmacyId": string;
     }
-    interface PmiAmbulanceWlEditorAttributes {
-        "entryId": string;
-        "ambulanceId": string;
+    interface PmdlPharmacyEditorAttributes {
+        "medicineId": string;
+        "pharmacyId": string;
         "apiBase": string;
     }
-    interface PmiAmbulanceWlListAttributes {
+    interface PmdlPharmacyListAttributes {
         "apiBase": string;
-        "ambulanceId": string;
+        "pharmacyId": string;
     }
 
     interface IntrinsicElements {
-        "pmi-ambulance-wl-app": Omit<PmiAmbulanceWlApp, keyof PmiAmbulanceWlAppAttributes> & { [K in keyof PmiAmbulanceWlApp & keyof PmiAmbulanceWlAppAttributes]?: PmiAmbulanceWlApp[K] } & { [K in keyof PmiAmbulanceWlApp & keyof PmiAmbulanceWlAppAttributes as `attr:${K}`]?: PmiAmbulanceWlAppAttributes[K] } & { [K in keyof PmiAmbulanceWlApp & keyof PmiAmbulanceWlAppAttributes as `prop:${K}`]?: PmiAmbulanceWlApp[K] };
-        "pmi-ambulance-wl-editor": Omit<PmiAmbulanceWlEditor, keyof PmiAmbulanceWlEditorAttributes> & { [K in keyof PmiAmbulanceWlEditor & keyof PmiAmbulanceWlEditorAttributes]?: PmiAmbulanceWlEditor[K] } & { [K in keyof PmiAmbulanceWlEditor & keyof PmiAmbulanceWlEditorAttributes as `attr:${K}`]?: PmiAmbulanceWlEditorAttributes[K] } & { [K in keyof PmiAmbulanceWlEditor & keyof PmiAmbulanceWlEditorAttributes as `prop:${K}`]?: PmiAmbulanceWlEditor[K] };
-        "pmi-ambulance-wl-list": Omit<PmiAmbulanceWlList, keyof PmiAmbulanceWlListAttributes> & { [K in keyof PmiAmbulanceWlList & keyof PmiAmbulanceWlListAttributes]?: PmiAmbulanceWlList[K] } & { [K in keyof PmiAmbulanceWlList & keyof PmiAmbulanceWlListAttributes as `attr:${K}`]?: PmiAmbulanceWlListAttributes[K] } & { [K in keyof PmiAmbulanceWlList & keyof PmiAmbulanceWlListAttributes as `prop:${K}`]?: PmiAmbulanceWlList[K] };
+        "pmdl-pharmacy-app": Omit<PmdlPharmacyApp, keyof PmdlPharmacyAppAttributes> & { [K in keyof PmdlPharmacyApp & keyof PmdlPharmacyAppAttributes]?: PmdlPharmacyApp[K] } & { [K in keyof PmdlPharmacyApp & keyof PmdlPharmacyAppAttributes as `attr:${K}`]?: PmdlPharmacyAppAttributes[K] } & { [K in keyof PmdlPharmacyApp & keyof PmdlPharmacyAppAttributes as `prop:${K}`]?: PmdlPharmacyApp[K] };
+        "pmdl-pharmacy-editor": Omit<PmdlPharmacyEditor, keyof PmdlPharmacyEditorAttributes> & { [K in keyof PmdlPharmacyEditor & keyof PmdlPharmacyEditorAttributes]?: PmdlPharmacyEditor[K] } & { [K in keyof PmdlPharmacyEditor & keyof PmdlPharmacyEditorAttributes as `attr:${K}`]?: PmdlPharmacyEditorAttributes[K] } & { [K in keyof PmdlPharmacyEditor & keyof PmdlPharmacyEditorAttributes as `prop:${K}`]?: PmdlPharmacyEditor[K] };
+        "pmdl-pharmacy-list": Omit<PmdlPharmacyList, keyof PmdlPharmacyListAttributes> & { [K in keyof PmdlPharmacyList & keyof PmdlPharmacyListAttributes]?: PmdlPharmacyList[K] } & { [K in keyof PmdlPharmacyList & keyof PmdlPharmacyListAttributes as `attr:${K}`]?: PmdlPharmacyListAttributes[K] } & { [K in keyof PmdlPharmacyList & keyof PmdlPharmacyListAttributes as `prop:${K}`]?: PmdlPharmacyList[K] };
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "pmi-ambulance-wl-app": LocalJSX.IntrinsicElements["pmi-ambulance-wl-app"] & JSXBase.HTMLAttributes<HTMLPmiAmbulanceWlAppElement>;
-            "pmi-ambulance-wl-editor": LocalJSX.IntrinsicElements["pmi-ambulance-wl-editor"] & JSXBase.HTMLAttributes<HTMLPmiAmbulanceWlEditorElement>;
-            "pmi-ambulance-wl-list": LocalJSX.IntrinsicElements["pmi-ambulance-wl-list"] & JSXBase.HTMLAttributes<HTMLPmiAmbulanceWlListElement>;
+            "pmdl-pharmacy-app": LocalJSX.IntrinsicElements["pmdl-pharmacy-app"] & JSXBase.HTMLAttributes<HTMLPmdlPharmacyAppElement>;
+            "pmdl-pharmacy-editor": LocalJSX.IntrinsicElements["pmdl-pharmacy-editor"] & JSXBase.HTMLAttributes<HTMLPmdlPharmacyEditorElement>;
+            "pmdl-pharmacy-list": LocalJSX.IntrinsicElements["pmdl-pharmacy-list"] & JSXBase.HTMLAttributes<HTMLPmdlPharmacyListElement>;
         }
     }
 }
