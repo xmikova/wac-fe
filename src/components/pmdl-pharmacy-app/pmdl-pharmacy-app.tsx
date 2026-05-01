@@ -1,11 +1,5 @@
 import { Component, Host, Prop, State, h } from '@stencil/core';
 
-declare global {
-  interface Window {
-    navigation: any;
-  }
-}
-
 @Component({
   tag: 'pmdl-pharmacy-app',
   styleUrl: 'pmdl-pharmacy-app.css',
@@ -14,7 +8,7 @@ declare global {
 export class PmdlPharmacyApp {
   @State() private relativePath = '';
   @Prop() basePath: string = '';
-  @Prop() apiBase: string;
+  @Prop() apiBase!: string;
   @Prop() pharmacyId: string = 'pmdl-pharmacy';
 
   componentWillLoad() {
@@ -41,10 +35,37 @@ export class PmdlPharmacyApp {
   render() {
     let element = 'list';
     let medicineId = '@new';
+    let orderId = '@new';
 
-    if (this.relativePath.startsWith('medicine/')) {
+    // Normalize relativePath (remove trailing slash)
+    const path = this.relativePath.replace(/\/$/, '');
+
+    // Handle medicine routes
+    if (path.startsWith('medicine/')) {
       element = 'editor';
-      medicineId = this.relativePath.split('/')[1];
+      medicineId = path.split('/')[1];
+    }
+    // Handle orders - be specific, check longer paths first
+    else if (path.startsWith('orders/') && path.includes('/edit')) {
+      // orders/{id}/edit
+      element = 'orders-editor';
+      const parts = path.split('/');
+      orderId = parts[1];
+    }
+    else if (path === 'orders/new') {
+      // orders/new
+      element = 'orders-editor';
+      orderId = '@new';
+    }
+    else if (path.startsWith('orders/')) {
+      // orders/{id} - detail
+      element = 'orders-detail';
+      const parts = path.split('/');
+      orderId = parts[1];
+    }
+    else if (path === 'orders') {
+      // orders list
+      element = 'orders-list';
     }
 
     const navigate = (path: string) => {
@@ -61,6 +82,23 @@ export class PmdlPharmacyApp {
             api-base={this.apiBase}
             oneditor-closed={() => navigate('./list')}
           ></pmdl-pharmacy-editor>
+        ) : element === 'orders-list' ? (
+          <pmdl-pharmacy-orders-list
+            pharmacyId={this.pharmacyId}
+            basePath={this.basePath}
+          ></pmdl-pharmacy-orders-list>
+        ) : element === 'orders-editor' ? (
+          <pmdl-pharmacy-order-editor
+            pharmacyId={this.pharmacyId}
+            basePath={this.basePath}
+            orderId={orderId}
+          ></pmdl-pharmacy-order-editor>
+        ) : element === 'orders-detail' ? (
+          <pmdl-pharmacy-order-detail
+            pharmacyId={this.pharmacyId}
+            basePath={this.basePath}
+            orderId={orderId}
+          ></pmdl-pharmacy-order-detail>
         ) : (
           <pmdl-pharmacy-list
             api-base={this.apiBase}

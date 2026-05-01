@@ -1,0 +1,43 @@
+:host {
+    display: block;
+    padding: 12px
+}
+
+h3 {
+    margin: 0 0 8px 0
+}
+
+.status-actions {
+    display: flex;
+    gap: 8px;
+    margin: 12px 0
+}
+
+.status-actions button {
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: none;
+    background: #e2e8f0;
+    color: #111
+}
+
+.status-actions button:first-child {
+    background: #2b6cb0;
+    color: #fff
+}
+
+ul {
+    padding-left: 18px;
+    margin: 8px 0
+}
+
+.nav {
+    margin-top: 12px;
+    display: flex;
+    gap: 8px
+}
+
+.nav a {
+    color: #2b6cb0;
+    text-decoration: none
+}

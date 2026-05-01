@@ -1,0 +1,47 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px
+}
+
+.header h3 {
+    margin: 0;
+    font-size: 1.1rem
+}
+
+.btn {
+    background: #2b6cb0;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 4px;
+    text-decoration: none
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid #eee;
+    border-radius: 6px
+}
+
+.row a {
+    color: #2b6cb0;
+    text-decoration: none
+}
+
+.status {
+    font-size: 0.9rem;
+    padding: 2px 8px;
+    border-radius: 12px;
+    background: #edf2ff;
+    color: #2b6cb0
+}
