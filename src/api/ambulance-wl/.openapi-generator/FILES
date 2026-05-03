@@ -1,8 +1,15 @@
 apis/AmbulanceConditionsApi.ts
 apis/AmbulanceWaitingListApi.ts
+apis/AmbulancesApi.ts
+apis/PharmacyOrdersApi.ts
 apis/index.ts
 index.ts
+models/Ambulance.ts
 models/Condition.ts
+models/Order.ts
+models/OrderItem.ts
+models/OrderStatus.ts
+models/UpdateOrderStatusRequest.ts
 models/WaitingListEntry.ts
 models/index.ts
 runtime.ts

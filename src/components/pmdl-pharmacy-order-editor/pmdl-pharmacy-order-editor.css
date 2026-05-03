@@ -1,0 +1,113 @@
+:host {
+  display: block;
+  padding: 16px;
+}
+
+.title {
+  margin: 0 0 16px 0;
+  font-size: 1.25rem;
+}
+
+h3 {
+  margin: 16px 0 8px 0;
+  font-size: 1.1rem;
+}
+
+.section-title {
+  margin-top: 20px;
+}
+
+.empty-state {
+  padding: 8px;
+  color: #666;
+}
+
+.error {
+  padding: 8px;
+  margin-bottom: 12px;
+  color: var(--md-sys-color-error, #b3261e);
+  background: var(--md-sys-color-error-container, #f9dedc);
+  border-radius: 4px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+md-filled-text-field {
+  width: 100%;
+}
+
+.item-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 150px 100px 150px 1fr;
+  gap: 8px;
+  align-items: end;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  margin-bottom: 8px;
+  background-color: #fafafa;
+}
+
+.item-row md-filled-text-field {
+  width: 100%;
+}
+
+.item-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.item-total {
+  font-size: 0.95rem;
+}
+
+.remove-item-button {
+  min-width: 40px;
+}
+
+.add-item-button {
+  margin-top: 12px;
+}
+
+.section-divider {
+  margin: 16px 0;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 16px;
+  gap: 8px;
+}
+
+.stretch-fill {
+  flex: 1;
+}
+
+.actions a {
+    align-self: center;
+    color: #555;
+    text-decoration: none
+}
+
+.order-total {
+  display: flex;
+  font-size: 1.1rem;
+  margin: 12px 0;
+  gap: 8px;
+}
+
+.order-total strong {
+  font-weight: 600;
+}
+
+.order-total span {
+  font-weight: 700;
+}
