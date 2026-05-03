@@ -132,11 +132,6 @@ export class PmdlPharmacyOrderEditor {
                   oninput={(ev: InputEvent) => this.updateItem(idx, 'quantity', parseInt((ev.target as HTMLInputElement).value || '0'))}
                 />
                 <md-filled-text-field
-                  label="Jednotka"
-                  value={it.unit}
-                  oninput={(ev: InputEvent) => this.updateItem(idx, 'unit', (ev.target as HTMLInputElement).value)}
-                />
-                <md-filled-text-field
                   label="Cena za jednotku"
                   type="number"
                   step="0.01"
@@ -144,7 +139,7 @@ export class PmdlPharmacyOrderEditor {
                   oninput={(ev: InputEvent) => this.updateItem(idx, 'unitPrice', parseFloat((ev.target as HTMLInputElement).value || '0'))}
                 />
                 <div class="item-summary">
-                  <span class="item-total">Spolu: {(it.totalPrice || 0).toFixed(2)}</span>
+                  <span class="item-total">Spolu: {(it.totalPrice || 0).toFixed(2)}€</span>
                   <md-filled-tonal-button onClick={() => this.removeItem(idx)} class="remove-item-button">
                     <md-icon slot="icon">delete</md-icon>
                   </md-filled-tonal-button>

@@ -1,5 +1,5 @@
 import { Component, Prop, State, Host, h } from '@stencil/core';
-import { PharmacyOrdersApi, Configuration } from '../../api/ambulance-wl';
+import { PharmacyOrdersApi, Configuration, OrderStatus } from '../../api/ambulance-wl';
 
 @Component({
   tag: 'pmdl-pharmacy-orders-list',
@@ -39,6 +39,21 @@ export class PmdlPharmacyOrdersList {
     window.navigation.navigate(`${basePath}/orders/${orderId}`);
   }
 
+    getStatusLabel(status: OrderStatus | null | undefined): string {
+    switch (status) {
+      case OrderStatus.Created:
+        return 'Vytvorená';
+      case OrderStatus.Confirmed:
+        return 'Potvrdená';
+      case OrderStatus.Delivered:
+        return 'Doručená';
+      case OrderStatus.Cancelled:
+        return 'Zrušená';
+      default:
+        return '-';
+    }
+  }
+
   render() {
     return (
       <Host>
@@ -57,7 +72,7 @@ export class PmdlPharmacyOrdersList {
             {this.orders.map(order => (
               <md-list-item onClick={() => this.navigateToDetail(order.id)}>
                 <div slot="headline">Objednávka: {order.id}</div>
-                <div slot="supporting-text">Stav: {order.status} | Tvorca: {order.createdBy}</div>
+                <div slot="supporting-text">Stav: {this.getStatusLabel(order.status)} | Vytvoril: {order.createdBy}</div>
                 <md-icon slot="start">shopping_cart</md-icon>
                 <md-icon slot="end">chevron_right</md-icon>
               </md-list-item>
