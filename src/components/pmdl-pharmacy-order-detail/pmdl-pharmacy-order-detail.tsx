@@ -77,7 +77,7 @@ export class PmdlPharmacyOrderDetail {
 
     get totalOrderPrice(): number {
        return (this.order?.items || []).reduce((sum, it) => {
-           return sum + (it.totalPrice || it.quantity * it.unitPrice);
+           return sum + it.totalPrice!;
        }, 0);
     }
 

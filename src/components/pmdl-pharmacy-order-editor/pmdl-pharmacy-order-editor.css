@@ -96,3 +96,18 @@ md-filled-text-field {
     color: #555;
     text-decoration: none
 }
+
+.order-total {
+  display: flex;
+  font-size: 1.1rem;
+  margin: 12px 0;
+  gap: 8px;
+}
+
+.order-total strong {
+  font-weight: 600;
+}
+
+.order-total span {
+  font-weight: 700;
+}
