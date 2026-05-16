@@ -1,5 +1,5 @@
 import { Component, Prop, State, Host, h } from '@stencil/core';
-import { PharmacyOrdersApi, Configuration, OrderStatus } from '../../api/ambulance-wl';
+import { PharmacyOrdersApi, Configuration, OrderStatus } from '../../api/pharmacy';
 
 @Component({
   tag: 'pmdl-pharmacy-orders-list',

@@ -4,10 +4,10 @@
       "useDocker": true,
       "version": "6.6.0",
       "generators": {
-          "ambulance-wl": {
+          "pharmacy": {
               "generatorName": "typescript-fetch"   ,
-              "glob": "api/ambulance-wl.openapi.yaml",
-              "output": "#{cwd}/src/api/ambulance-wl",
+              "glob": "api/pharmacy.openapi.yaml",
+              "output": "#{cwd}/src/api/pharmacy",
               "additionalProperties": {
                   "supportsES6": "true",
                   "withInterfaces": true

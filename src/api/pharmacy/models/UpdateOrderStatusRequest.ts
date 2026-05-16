@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * Waiting List Api
- * Ambulance Waiting List management for Web-In-Cloud system
+ * Pharmacy Management for Web-In-Cloud system
  *
  * The version of the OpenAPI document: 1.0.0
  * Contact: xmikova@stuba.sk

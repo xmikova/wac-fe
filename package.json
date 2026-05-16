@@ -33,7 +33,7 @@
   ],
   "scripts": {
     "build": "stencil build",
-    "convert-openapi": "js-yaml  ./api/ambulance-wl.openapi.yaml > .openapi.json",
+    "convert-openapi": "js-yaml  ./api/pharmacy.openapi.yaml > .openapi.json",
     "mock-api": "open-api-mocker --schema .openapi.json --port 5000",
     "start:app": "stencil build --dev --watch --serve",
     "start:mock": "run-s convert-openapi mock-api",
