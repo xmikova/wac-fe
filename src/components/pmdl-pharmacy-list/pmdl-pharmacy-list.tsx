@@ -69,9 +69,11 @@ export class PmdlPharmacyList {
               <md-list-item onClick={() => this.entryClicked.emit(medicine.id)}>
                 <div slot="headline">{medicine.name}</div>
                 <div slot="supporting-text">
-                  {medicine.activeSubstance} | {medicine.dosage} | Sklad: {medicine.currentStock}
-                  {this.isLowStock(medicine) ? ' ⚠ NÍZKY STAV' : ''}
-                  {this.isExpiringSoon(medicine) ? ' ⚠ EXPIRUJE' : ''}
+                  <span class="meta">{medicine.activeSubstance} · {medicine.dosage}</span>
+                  <span class={`pill ${this.isLowStock(medicine) ? 'pill-warn' : 'pill-ok'}`}>
+                    {medicine.currentStock} ks
+                  </span>
+                  {this.isExpiringSoon(medicine) && <span class="pill pill-danger">⚠ expiruje</span>}
                 </div>
                 <md-icon slot="start">medication</md-icon>
                 <md-icon slot="end">chevron_right</md-icon>

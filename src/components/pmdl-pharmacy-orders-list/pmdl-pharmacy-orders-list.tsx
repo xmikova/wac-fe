@@ -71,8 +71,13 @@ export class PmdlPharmacyOrdersList {
           <md-list>
             {this.orders.map(order => (
               <md-list-item onClick={() => this.navigateToDetail(order.id)}>
-                <div slot="headline">Objednávka: {order.id}</div>
-                <div slot="supporting-text">Stav: {this.getStatusLabel(order.status)} | Vytvoril: {order.createdBy}</div>
+                <div slot="headline">
+                  <span class="order-id">{order.id}</span>
+                </div>
+                <div slot="supporting-text">
+                  <span class={`status-pill status-${order.status}`}>{this.getStatusLabel(order.status)}</span>
+                  {order.createdBy && <span class="meta"> · {order.createdBy}</span>}
+                </div>
                 <md-icon slot="start">shopping_cart</md-icon>
                 <md-icon slot="end">chevron_right</md-icon>
               </md-list-item>

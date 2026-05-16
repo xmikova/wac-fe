@@ -19,3 +19,52 @@
   padding: 16px;
   color: var(--md-sys-color-error, #b3261e);
 }
+
+md-list-item {
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+md-list-item:hover {
+  background: rgba(43, 108, 176, 0.05);
+}
+
+.order-id {
+  font-size: 0.88rem;
+  color: var(--md-sys-color-on-surface-variant, #49454f);
+  font-family: monospace;
+}
+
+.meta {
+  color: var(--md-sys-color-on-surface-variant, #49454f);
+}
+
+.status-pill {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 1px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.01em;
+  vertical-align: middle;
+}
+
+.status-created {
+  background: #dbeafe;
+  color: #1e40af;
+}
+
+.status-confirmed {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-delivered {
+  background: #f3f4f6;
+  color: #374151;
+}
+
+.status-cancelled {
+  background: #fee2e2;
+  color: #991b1b;
+}

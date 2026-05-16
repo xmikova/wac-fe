@@ -48,18 +48,15 @@ export class PmdlPharmacyApp {
     }
     // Handle orders - be specific, check longer paths first
     else if (path.startsWith('orders/') && path.includes('/edit')) {
-      // orders/{id}/edit
       element = 'orders-editor';
       const parts = path.split('/');
       orderId = parts[1];
     }
     else if (path === 'orders/new') {
-      // orders/new
       element = 'orders-editor';
       orderId = '@new';
     }
     else if (path.startsWith('orders/')) {
-      // orders/{id} - detail
       element = 'orders-detail';
       const parts = path.split('/');
       orderId = parts[1];
@@ -67,6 +64,15 @@ export class PmdlPharmacyApp {
     else if (path === 'orders') {
       element = 'orders-list';
       activeTab = 'orders';
+    }
+    // Dispensing routes
+    else if (path === 'dispensings/new') {
+      element = 'dispensing-editor';
+      activeTab = 'dispensings';
+    }
+    else if (path === 'dispensings') {
+      element = 'dispensings-list';
+      activeTab = 'dispensings';
     }
     else {
       element = 'list';
@@ -78,9 +84,11 @@ export class PmdlPharmacyApp {
       window.navigation.navigate(absolute);
     };
 
+    const isEditorView = element === 'editor' || element === 'orders-editor' || element === 'orders-detail' || element === 'dispensing-editor';
+
     return (
       <Host>
-        {element === 'editor' || element === 'orders-editor' || element === 'orders-detail' ? (
+        {isEditorView ? (
           // editor/detail views - no tabs
           <>
             {element === 'editor' ? (
@@ -104,6 +112,12 @@ export class PmdlPharmacyApp {
                 apiBase={this.apiBase}
                 orderId={orderId}
               ></pmdl-pharmacy-order-detail>
+            ) : element === 'dispensing-editor' ? (
+              <pmdl-pharmacy-dispensing-editor
+                pharmacyId={this.pharmacyId}
+                basePath={this.basePath}
+                apiBase={this.apiBase}
+              ></pmdl-pharmacy-dispensing-editor>
             ) : null}
           </>
         ) : (
@@ -124,6 +138,13 @@ export class PmdlPharmacyApp {
               >
                 Objednávky
               </md-primary-tab>
+              <md-primary-tab
+                class={activeTab === 'dispensings' ? 'active' : ''}
+                active={activeTab === 'dispensings'}
+                onClick={() => navigate('./dispensings')}
+              >
+                Výdaj
+              </md-primary-tab>
             </md-tabs>
             {element === 'list' ? (
               <pmdl-pharmacy-list
@@ -137,6 +158,12 @@ export class PmdlPharmacyApp {
                 basePath={this.basePath}
                 apiBase={this.apiBase}
               ></pmdl-pharmacy-orders-list>
+            ) : element === 'dispensings-list' ? (
+              <pmdl-pharmacy-dispensings-list
+                pharmacyId={this.pharmacyId}
+                basePath={this.basePath}
+                apiBase={this.apiBase}
+              ></pmdl-pharmacy-dispensings-list>
             ) : null}
           </>
         )}
