@@ -66,21 +66,25 @@ export class PmdlPharmacyDispensingsList {
         ) : this.dispensings.length === 0 ? (
           <div class="empty">Žiadne záznamy o výdaji liekov</div>
         ) : (
-          <md-list>
+          <div class="list">
             {this.dispensings.map(d => (
-              <md-list-item>
-                <div slot="headline">
-                  {d.medicineName}
-                  <span class="qty-pill">{d.quantity} ks</span>
+              <div class="card">
+                <div class="card-icon">
+                  <md-icon>medication</md-icon>
                 </div>
-                <div slot="supporting-text">
-                  <span class="meta">{d.department} · {d.dispensedBy} · {this.formatDate(d.dispensedAt)}</span>
-                  {d.note && <span class="note"> — {d.note}</span>}
+                <div class="card-body">
+                  <div class="card-headline">
+                    {d.medicineName}
+                    <span class="qty-pill">{d.quantity} ks</span>
+                  </div>
+                  <div class="card-sub">
+                    <span class="meta">{d.department} · {d.dispensedBy} · {this.formatDate(d.dispensedAt)}</span>
+                    {d.note && <span class="note"> — {d.note}</span>}
+                  </div>
                 </div>
-                <md-icon slot="start">medication</md-icon>
-              </md-list-item>
+              </div>
             ))}
-          </md-list>
+          </div>
         )}
       </Host>
     );

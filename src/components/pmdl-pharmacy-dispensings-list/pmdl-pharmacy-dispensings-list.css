@@ -6,12 +6,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 16px;
+  padding: 12px 16px 8px;
 }
 
 .title {
   margin: 0;
   font-size: 1.25rem;
+  font-weight: 600;
   color: var(--md-sys-color-on-surface, #1c1b1f);
 }
 
@@ -25,14 +26,67 @@
   color: var(--md-sys-color-on-surface-variant, #49454f);
 }
 
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 16px 16px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--md-sys-color-surface-container-low, #f7f2fa);
+  border-radius: 16px;
+  border: 1px solid var(--md-sys-color-outline-variant, #cac4d0);
+}
+
+.card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--md-sys-color-secondary-container, #e8def8);
+  color: var(--md-sys-color-on-secondary-container, #1d192b);
+  flex-shrink: 0;
+}
+
+.card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-headline {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface, #1c1b1f);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.card-sub {
+  margin-top: 3px;
+  font-size: 0.81rem;
+  color: var(--md-sys-color-on-surface-variant, #49454f);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
 .qty-pill {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   font-size: 0.72rem;
   font-weight: 600;
-  padding: 1px 7px;
+  padding: 2px 8px;
   border-radius: 999px;
-  margin-left: 6px;
-  vertical-align: middle;
   background: #dbeafe;
   color: #1e40af;
   letter-spacing: 0.01em;

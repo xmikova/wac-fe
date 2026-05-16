@@ -64,22 +64,26 @@ export class PmdlPharmacyList {
         {this.errorMessage ? (
           <div class="error">{this.errorMessage}</div>
         ) : (
-          <md-list>
+          <div class="list">
             {this.medicines.map(medicine => (
-              <md-list-item onClick={() => this.entryClicked.emit(medicine.id)}>
-                <div slot="headline">{medicine.name}</div>
-                <div slot="supporting-text">
-                  <span class="meta">{medicine.activeSubstance} · {medicine.dosage}</span>
-                  <span class={`pill ${this.isLowStock(medicine) ? 'pill-warn' : 'pill-ok'}`}>
-                    {medicine.currentStock} ks
-                  </span>
-                  {this.isExpiringSoon(medicine) && <span class="pill pill-danger">⚠ expiruje</span>}
+              <div class="card" onClick={() => this.entryClicked.emit(medicine.id)}>
+                <div class="card-icon">
+                  <md-icon>medication</md-icon>
                 </div>
-                <md-icon slot="start">medication</md-icon>
-                <md-icon slot="end">chevron_right</md-icon>
-              </md-list-item>
+                <div class="card-body">
+                  <div class="card-headline">{medicine.name}</div>
+                  <div class="card-sub">
+                    <span class="meta">{medicine.activeSubstance} · {medicine.dosage}</span>
+                    <span class={`pill ${this.isLowStock(medicine) ? 'pill-warn' : 'pill-ok'}`}>
+                      {medicine.currentStock} ks
+                    </span>
+                    {this.isExpiringSoon(medicine) && <span class="pill pill-danger">⚠ expiruje</span>}
+                  </div>
+                </div>
+                <md-icon class="card-chevron">chevron_right</md-icon>
+              </div>
             ))}
-          </md-list>
+          </div>
         )}
       </Host>
     );

@@ -68,21 +68,25 @@ export class PmdlPharmacyOrdersList {
         ) : this.orders.length === 0 ? (
           <div class="error">Žiadne objednávky</div>
         ) : (
-          <md-list>
+          <div class="list">
             {this.orders.map(order => (
-              <md-list-item onClick={() => this.navigateToDetail(order.id)}>
-                <div slot="headline">
-                  <span class="order-id">{order.id}</span>
+              <div class="card" onClick={() => this.navigateToDetail(order.id)}>
+                <div class="card-icon">
+                  <md-icon>shopping_cart</md-icon>
                 </div>
-                <div slot="supporting-text">
-                  <span class={`status-pill status-${order.status}`}>{this.getStatusLabel(order.status)}</span>
-                  {order.createdBy && <span class="meta"> · {order.createdBy}</span>}
+                <div class="card-body">
+                  <div class="card-headline">
+                    <span class="order-id">{order.id}</span>
+                  </div>
+                  <div class="card-sub">
+                    <span class={`status-pill status-${order.status}`}>{this.getStatusLabel(order.status)}</span>
+                    {order.createdBy && <span class="meta"> · {order.createdBy}</span>}
+                  </div>
                 </div>
-                <md-icon slot="start">shopping_cart</md-icon>
-                <md-icon slot="end">chevron_right</md-icon>
-              </md-list-item>
+                <md-icon class="card-chevron">chevron_right</md-icon>
+              </div>
             ))}
-          </md-list>
+          </div>
         )}
       </Host>
     );

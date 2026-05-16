@@ -6,12 +6,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 16px;
+  padding: 12px 16px 8px;
 }
 
 .title {
   margin: 0;
   font-size: 1.25rem;
+  font-weight: 600;
   color: var(--md-sys-color-on-surface, #1c1b1f);
 }
 
@@ -20,13 +21,66 @@
   color: var(--md-sys-color-error, #b3261e);
 }
 
-md-list-item {
-  cursor: pointer;
-  transition: background 0.15s;
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 4px 16px 16px;
 }
 
-md-list-item:hover {
-  background: rgba(43, 108, 176, 0.05);
+.card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
+  background: var(--md-sys-color-surface-container-low, #f7f2fa);
+  border-radius: 16px;
+  border: 1px solid var(--md-sys-color-outline-variant, #cac4d0);
+  cursor: pointer;
+  transition: box-shadow 0.18s ease, transform 0.18s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.10);
+  transform: translateY(-2px);
+}
+
+.card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--md-sys-color-secondary-container, #e8def8);
+  color: var(--md-sys-color-on-secondary-container, #1d192b);
+  flex-shrink: 0;
+}
+
+.card-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-headline {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface, #1c1b1f);
+}
+
+.card-sub {
+  margin-top: 3px;
+  font-size: 0.81rem;
+  color: var(--md-sys-color-on-surface-variant, #49454f);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.card-chevron {
+  color: var(--md-sys-color-on-surface-variant, #49454f);
+  flex-shrink: 0;
 }
 
 .order-id {
@@ -40,13 +94,13 @@ md-list-item:hover {
 }
 
 .status-pill {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
   font-size: 0.72rem;
   font-weight: 600;
-  padding: 1px 8px;
+  padding: 2px 8px;
   border-radius: 999px;
   letter-spacing: 0.01em;
-  vertical-align: middle;
 }
 
 .status-created {
